@@ -1,0 +1,45 @@
+<div class="flex align-items-center justify-content-center min-h-screen p-3">
+  <div class="w-full" style="max-width: 30rem">
+    <p-card header="Iniciar sesión">
+      <form class="flex flex-column gap-3" [formGroup]="formulario" (ngSubmit)="entrar()">
+        @if (aviso()) {
+          <p-message severity="success" [text]="aviso()" styleClass="w-full" />
+        }
+        @if (mensaje()) {
+          <p-message severity="error" [text]="mensaje()" styleClass="w-full" />
+        }
+
+        <div class="flex flex-column gap-2">
+          <label for="correo">Correo</label>
+          <input pInputText id="correo" type="email" formControlName="correo" class="w-full" autocomplete="username" />
+        </div>
+
+        <div class="flex flex-column gap-2">
+          <label for="contrasena">Contraseña</label>
+          <p-password
+            inputId="contrasena"
+            formControlName="contrasena"
+            [feedback]="false"
+            [toggleMask]="true"
+            styleClass="w-full"
+            inputStyleClass="w-full"
+            autocomplete="current-password"
+          />
+        </div>
+
+        <p-button
+          type="submit"
+          label="Entrar"
+          styleClass="w-full"
+          [loading]="cargando()"
+          [disabled]="formulario.invalid || cargando()"
+        />
+      </form>
+
+      <p class="mt-3 mb-0">
+        ¿No tienes cuenta?
+        <a routerLink="/registro">Regístrate</a>
+      </p>
+    </p-card>
+  </div>
+</div>
