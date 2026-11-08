@@ -1,0 +1,15 @@
+<div class="flex align-items-center justify-content-center min-h-screen p-3">
+  <div class="w-full" style="max-width: 30rem">
+    <p-card header="Inicio">
+      @if (sesion.usuario(); as usuario) {
+        <p>Hola, {{ usuario.nombreUsuario }}</p>
+        <p>{{ usuario.correo }}</p>
+        <p>{{ usuario.roles.join(', ') }}</p>
+        <p-button label="Cerrar sesión" (onClick)="salir()" />
+      } @else {
+        <p>No hay una sesión activa.</p>
+        <a routerLink="/login">Iniciar sesión</a>
+      }
+    </p-card>
+  </div>
+</div>
